@@ -1,19 +1,27 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.jenkins-ci.plugins</groupId>
-        <artifactId>plugin</artifactId>
-        <version>1.421</version>
+        <groupId>org.eclipse.hudson.plugins</groupId>
+        <artifactId>hudson-plugin-parent</artifactId>
+        <version>3.0.0</version>
+        <relativePath />
     </parent>
+
+    <groupId>org.hudsonci.plugins</groupId>
     <artifactId>svn-tag</artifactId>
-    <name>Jenkins Subversion Tagging Plugin</name>
-    <url>http://wiki.jenkins-ci.org/display/JENKINS/Subversion+Tagging+Plugin</url>
+    <name>Subversion Tagging Plugin</name>
+    <url>http://wiki.hudson-ci.org/display/HUDSON/Subversion+Tagging+Plugin</url>
     <packaging>hpi</packaging>
-    <version>1.17-SNAPSHOT</version>
+    <version>1.17-h-1-SNAPSHOT</version>
+    
+    <properties>
+        <hudsonTags>util</hudsonTags>
+    </properties>
+    
     <scm>
-        <connection>scm:git:git://github.com/jenkinsci/svn-tag-plugin.git</connection>
-        <developerConnection>scm:git:git@github.com:jenkinsci/svn-tag-plugin.git</developerConnection>
-        <url>http://github.com/jenkinsci/svn-tag-plugin</url>
+        <connection>scm:git:git://github.com/hudson3-plugins/svn-tag-plugin.git</connection>
+        <developerConnection>scm:git:git@github.com:hudson3-plugins/svn-tag-plugin.git</developerConnection>
+        <url>http://github.com/hudson3-plugins/svn-tag-plugin</url>
     </scm>
     <developers>
         <developer>
@@ -36,26 +44,25 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.jenkins-ci.plugins</groupId>
+            <groupId>org.hudsonci.plugins</groupId>
             <artifactId>subversion</artifactId>
-            <version>[1.28,)</version>
-            <type>jar</type>
-            <scope>compile</scope>
+            <version>2.3.8-h-1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hudsonci.plugins</groupId>
+            <artifactId>groovy-support-plugin</artifactId>
+            <version>3.0.3</version>
         </dependency>
     </dependencies>
-
-  <repositories>
-    <repository>
-      <id>repo.jenkins-ci.org</id>
-      <url>http://repo.jenkins-ci.org/public/</url>
-    </repository>
-  </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>repo.jenkins-ci.org</id>
-            <url>http://repo.jenkins-ci.org/public/</url>
-        </pluginRepository>
-    </pluginRepositories>
+    <build>
+        <plugins>
+            
+            <plugin>
+                <groupId>org.eclipse.hudson.tools</groupId>
+                <artifactId>maven-hpi-plugin</artifactId>
+                <version>3.0.2</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>  
 

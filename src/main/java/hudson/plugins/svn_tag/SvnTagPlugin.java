@@ -76,7 +76,7 @@ public class SvnTagPlugin {
         // we rely on the root project to find the SCM configuration and revision to tag.
         AbstractProject<?, ?> rootProject =
                 abstractBuild.getProject().getRootProject();
-        AbstractBuild<?, ?> rootBuild = abstractBuild.getRootBuild();
+        AbstractBuild<?, ?> rootBuild = rootProject.getBuilds().get(0);
 
         if (!(rootProject.getScm() instanceof SubversionSCM)) {
             logger.println(Messages.NotSubversion(rootProject.getScm().toString()));
@@ -118,7 +118,7 @@ public class SvnTagPlugin {
 
         SVNCommitClient commitClient = new SVNCommitClient(sam, null);
 
-        for (SubversionSCM.ModuleLocation ml : scm.getLocations(envVars, rootBuild)) {
+        for (SubversionSCM.ModuleLocation ml : scm.getLocations(rootBuild)) {
 			String mlUrl;
         	URI repoURI;
 			try {
